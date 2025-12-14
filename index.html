@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 Pit Wall Brain</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="f1-brand">FORMULA 1</div>
+                    <h1>PIT WALL BRAIN</h1>
+                    <div class="subtitle">The Race Beyond The Track</div>
+                </div>
+                <div class="f1-car-container">
+                    <svg class="f1-car" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Modern F1 Car Silhouette -->
+                        <!-- Main body -->
+                        <path d="M50 75 L80 70 L120 65 L180 60 L280 60 L340 65 L370 70 L385 75 L380 85 L360 90 L340 85 L280 85 L120 85 L80 90 L60 85 Z" fill="#E10600" stroke="#2c3e50" stroke-width="2"/>
+                        
+                        <!-- Cockpit -->
+                        <path d="M140 60 L260 60 L260 45 L250 35 L230 30 L170 30 L150 35 L140 45 Z" fill="#2c3e50" stroke="#E10600" stroke-width="2"/>
+                        
+                        <!-- Front wing -->
+                        <path d="M40 75 L80 70 L85 78 L80 85 L40 80 Z" fill="#c0c0c0" stroke="#2c3e50"/>
+                        
+                        <!-- Rear wing -->
+                        <path d="M370 70 L385 75 L390 65 L395 55 L385 50 L370 55 L375 65 Z" fill="#c0c0c0" stroke="#2c3e50"/>
+                        
+                        <!-- Front wheel -->
+                        <circle cx="90" cy="85" r="18" fill="#2c3e50" stroke="#c0c0c0" stroke-width="3"/>
+                        <circle cx="90" cy="85" r="12" fill="#c0c0c0"/>
+                        
+                        <!-- Rear wheel -->
+                        <circle cx="330" cy="85" r="18" fill="#2c3e50" stroke="#c0c0c0" stroke-width="3"/>
+                        <circle cx="330" cy="85" r="12" fill="#c0c0c0"/>
+                        
+                        <!-- Halo -->
+                        <path d="M170 30 L200 20 L230 30" fill="none" stroke="#c0c0c0" stroke-width="4"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-tabs">
+        <div class="container">
+            <div class="tab-list">
+                <button class="tab-button active" data-tab="dashboard">🏠 Strategy Hub</button>
+                <button class="tab-button" data-tab="analysis">⚡ Real-Time Analysis</button>
+                <button class="tab-button" data-tab="history">📊 Race History</button>
+                <button class="tab-button" data-tab="circuits">🗺️ Circuit Database</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Dashboard Tab -->
+            <div class="tab-content active" id="dashboard">
+                <div class="hero-section">
+                    <div class="hero-content">
+                        <h1>Pit Wall Brain</h1>
+                        <p class="hero-description">
+                            Professional Formula 1 strategy analysis platform with real-time tire degradation modeling, 
+                            comprehensive circuit database, and strategic insights for all 20 grid positions.
+                        </p>
+                        <div class="hero-stats">
+                            <div class="stat-card">
+                                <div class="stat-number">24</div>
+                                <div class="stat-label">Circuits</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">20</div>
+                                <div class="stat-label">Seasons</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">7</div>
+                                <div class="stat-label">Compounds</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card" data-target="analysis">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Real-Time Analysis</h3>
+                        <p>Advanced tire degradation modeling with instant updates for strategic decision making.</p>
+                        <button class="btn btn--primary">Launch Analysis</button>
+                    </div>
+
+                    <div class="feature-card" data-target="history">
+                        <div class="feature-icon">📊</div>
+                        <h3>Race History</h3>
+                        <p>Comprehensive database of race results and championship standings from 2005-2025.</p>
+                        <button class="btn btn--primary">View History</button>
+                    </div>
+
+                    <div class="feature-card" data-target="circuits">
+                        <div class="feature-icon">🗺️</div>
+                        <h3>Circuit Database</h3>
+                        <p>Detailed technical specifications and strategic insights for all 24 F1 circuits.</p>
+                        <button class="btn btn--primary">Browse Circuits</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analysis Tab -->
+            <div class="tab-content" id="analysis">
+                <div class="section-header">
+                    <h2>Real-Time Strategy Analysis</h2>
+                    <p>Professional tire degradation modeling with instant strategic recommendations</p>
+                </div>
+
+                <div class="analysis-layout">
+                    <div class="analysis-inputs">
+                        <div class="input-section">
+                            <h3>Race Configuration</h3>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Circuit Selection</label>
+                                <select class="form-control" id="circuitSelect">
+                                    <option value="bahrain">🇧🇭 Bahrain International Circuit</option>
+                                    <option value="saudi">🇸🇦 Jeddah Corniche Circuit</option>
+                                    <option value="australia">🇦🇺 Albert Park Circuit</option>
+                                    <option value="china">🇨🇳 Shanghai International Circuit</option>
+                                    <option value="miami">🇺🇸 Miami International Autodrome</option>
+                                    <option value="monaco">🇲🇨 Circuit de Monaco</option>
+                                    <option value="canada">🇨🇦 Circuit Gilles Villeneuve</option>
+                                    <option value="silverstone">🇬🇧 Silverstone Circuit</option>
+                                    <option value="hungary">🇭🇺 Hungaroring</option>
+                                    <option value="spa">🇧🇪 Circuit de Spa-Francorchamps</option>
+                                    <option value="monza">🇮🇹 Autodromo Nazionale Monza</option>
+                                    <option value="singapore">🇸🇬 Marina Bay Street Circuit</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Grid Position</label>
+                                <select class="form-control" id="positionSelect">
+                                    <option value="1">P1 - Pole Position</option>
+                                    <option value="2">P2 - Front Row</option>
+                                    <option value="3">P3 - Second Row</option>
+                                    <option value="4">P4 - Second Row</option>
+                                    <option value="5" selected>P5 - Third Row</option>
+                                    <option value="6">P6 - Third Row</option>
+                                    <option value="7">P7 - Fourth Row</option>
+                                    <option value="8">P8 - Fourth Row</option>
+                                    <option value="9">P9 - Fifth Row</option>
+                                    <option value="10">P10 - Points Zone</option>
+                                    <option value="11">P11 - Outside Points</option>
+                                    <option value="12">P12 - Mid-field</option>
+                                    <option value="13">P13 - Mid-field</option>
+                                    <option value="14">P14 - Mid-field</option>
+                                    <option value="15">P15 - Mid-field</option>
+                                    <option value="16">P16 - Back Half</option>
+                                    <option value="17">P17 - Back Half</option>
+                                    <option value="18">P18 - Back Half</option>
+                                    <option value="19">P19 - Back of Grid</option>
+                                    <option value="20">P20 - Back of Grid</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Current Tire Compound</label>
+                                <select class="form-control" id="tireSelect">
+                                    <option value="C5">C5 - Soft (Red) - Maximum Grip</option>
+                                    <option value="C4">C4 - Soft (Red) - High Grip</option>
+                                    <option value="C3" selected>C3 - Medium (Yellow) - Balanced</option>
+                                    <option value="C2">C2 - Hard (White) - Durable</option>
+                                    <option value="C1">C1 - Hard (White) - Maximum Durability</option>
+                                    <option value="Intermediate">Intermediate (Green) - Light Rain</option>
+                                    <option value="Wet">Full Wet (Blue) - Heavy Rain</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Laps Completed: <span id="lapsValue">15</span></label>
+                                <input type="range" class="form-control" id="lapsRange" min="1" max="70" value="15">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Track Temperature (°C): <span id="temperatureValue">35</span></label>
+                                <input type="range" class="form-control" id="temperatureRange" min="15" max="55" value="35">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Weather Conditions</label>
+                                <select class="form-control" id="weatherSelect">
+                                    <option value="dry">☀️ Dry Conditions</option>
+                                    <option value="light-rain">🌦️ Light Rain</option>
+                                    <option value="heavy-rain">🌧️ Heavy Rain</option>
+                                    <option value="drying">🌤️ Drying Track</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analysis-results">
+                        <div class="result-card">
+                            <h3>Tire Performance Status</h3>
+                            <div class="tire-status">
+                                <div class="performance-circle">
+                                    <div class="performance-number" id="performanceNumber">85</div>
+                                    <div class="performance-unit">%</div>
+                                </div>
+                                <div class="performance-bar">
+                                    <div class="performance-fill" id="performanceFill" style="width: 85%"></div>
+                                </div>
+                                <div class="tire-details">
+                                    <div class="tire-detail">
+                                        <span class="detail-label">Compound:</span>
+                                        <span class="detail-value" id="currentCompound">C3 Medium</span>
+                                    </div>
+                                    <div class="tire-detail">
+                                        <span class="detail-label">Degradation Rate:</span>
+                                        <span class="detail-value" id="degradationRate">0.28% per lap</span>
+                                    </div>
+                                    <div class="tire-detail">
+                                        <span class="detail-label">Remaining Life:</span>
+                                        <span class="detail-value" id="remainingLife">20-30 laps</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="result-card">
+                            <h3>Strategy Recommendations</h3>
+                            <div class="strategy-grid">
+                                <div class="strategy-item">
+                                    <div class="strategy-label">Optimal Pit Window</div>
+                                    <div class="strategy-value" id="pitWindow">Laps 28-33</div>
+                                </div>
+                                <div class="strategy-item">
+                                    <div class="strategy-label">Next Compound</div>
+                                    <div class="strategy-value" id="nextCompound">C1 Hard</div>
+                                </div>
+                                <div class="strategy-item">
+                                    <div class="strategy-label">Expected Pit Loss</div>
+                                    <div class="strategy-value" id="pitLoss">23.2s</div>
+                                </div>
+                                <div class="strategy-item">
+                                    <div class="strategy-label">Strategy Confidence</div>
+                                    <div class="strategy-value" id="confidence">91%</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="result-card">
+                            <h3>Circuit Analysis</h3>
+                            <div class="circuit-stats">
+                                <div class="circuit-stat">
+                                    <span class="stat-label">Tire Wear Rate:</span>
+                                    <span class="stat-value" id="tireWear">High</span>
+                                </div>
+                                <div class="circuit-stat">
+                                    <span class="stat-label">Overtaking Difficulty:</span>
+                                    <span class="stat-value" id="overtaking">Medium</span>
+                                </div>
+                                <div class="circuit-stat">
+                                    <span class="stat-label">Safety Car Probability:</span>
+                                    <span class="stat-value" id="safetyCarProb">25%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History Tab -->
+            <div class="tab-content" id="history">
+                <div class="section-header">
+                    <h2>F1 Race History Database (2005-2025)</h2>
+                    <div class="history-controls">
+                        <input type="text" class="form-control" id="searchInput" placeholder="🔍 Search drivers, teams, circuits...">
+                        <select class="form-control" id="seasonFilter">
+                            <option value="">All Seasons</option>
+                            <option value="2025">2025 Season</option>
+                            <option value="2024">2024 Season</option>
+                            <option value="2023">2023 Season</option>
+                            <option value="2022">2022 Season</option>
+                            <option value="2021">2021 Season</option>
+                            <option value="2020">2020 Season</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="history-content">
+                    <div id="historyAccordion" class="history-accordion"></div>
+                    
+                    <div class="chart-section">
+                        <div class="chart-card">
+                            <h3>Championship Evolution (2005-2025)</h3>
+                            <div class="chart-container" style="position: relative; height: 400px;">
+                                <canvas id="championshipChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Circuits Tab -->
+            <div class="tab-content" id="circuits">
+                <div class="section-header">
+                    <h2>Complete F1 Circuit Database</h2>
+                    <div class="circuit-selector">
+                        <select class="form-control" id="circuitDetailSelect">
+                            <option value="bahrain">🇧🇭 Bahrain International Circuit</option>
+                            <option value="saudi">🇸🇦 Jeddah Corniche Circuit</option>
+                            <option value="australia">🇦🇺 Albert Park Circuit</option>
+                            <option value="china">🇨🇳 Shanghai International Circuit</option>
+                            <option value="miami">🇺🇸 Miami International Autodrome</option>
+                            <option value="monaco">🇲🇨 Circuit de Monaco</option>
+                            <option value="canada">🇨🇦 Circuit Gilles Villeneuve</option>
+                            <option value="silverstone">🇬🇧 Silverstone Circuit</option>
+                            <option value="hungary">🇭🇺 Hungaroring</option>
+                            <option value="spa">🇧🇪 Circuit de Spa-Francorchamps</option>
+                            <option value="monza">🇮🇹 Autodromo Nazionale Monza</option>
+                            <option value="singapore">🇸🇬 Marina Bay Street Circuit</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="circuit-details">
+                    <div class="circuit-info-card">
+                        <h3 id="circuitName">Bahrain International Circuit</h3>
+                        <div class="circuit-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Length:</span>
+                                <span class="spec-value" id="circuitLength">5.412 km</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Corners:</span>
+                                <span class="spec-value" id="circuitCorners">15</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">DRS Zones:</span>
+                                <span class="spec-value" id="circuitDRS">3</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Lap Record:</span>
+                                <span class="spec-value" id="circuitRecord">1:31.447</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Tire Wear:</span>
+                                <span class="spec-value" id="circuitTireWear">High</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Overtaking:</span>
+                                <span class="spec-value" id="circuitOvertaking">Medium</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="circuit-chart-card">
+                        <h3>Circuit Analysis</h3>
+                        <div class="chart-container" style="position: relative; height: 350px;">
+                            <canvas id="circuitRadarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="circuits-overview">
+                    <h3>All F1 Circuits Overview</h3>
+                    <div class="circuit-grid" id="circuitGrid"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>Unofficial fan project – not affiliated with Formula One Group.</p>
+                <span>© 2025 Pit Wall Brain</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
